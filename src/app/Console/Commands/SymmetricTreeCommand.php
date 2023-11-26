@@ -12,7 +12,20 @@ class SymmetricTreeCommand
     {
         $symmetric_tree = new SymmetricTreeFinder();
 
-        if($symmetric_tree->search(new Node(1))){
+        $left = new Node(10);
+        $second_left = new Node(20);
+        $second_left_right = new Node(20);
+        $right = new Node(10);
+        $second_right = new Node(30);
+
+        $tree = new Node(5);
+        $left->setLeftNode($second_left);
+        $left->setRightNode($second_left_right);
+        $right->setRightNode($second_right);
+        $tree->setLeftNode($left);
+        $tree->setRightNode($right);
+
+        if($symmetric_tree->search($tree)){
             print_r("\nThe Tree is symmetric\n");
         }
         else{

@@ -61,9 +61,11 @@ class Node
 
         return true;
 
+    }
 
-
-
+    public function getRoot():int
+    {
+        return $this->root;
     }
 
 }

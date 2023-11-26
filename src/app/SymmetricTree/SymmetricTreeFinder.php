@@ -6,9 +6,11 @@ use App\SymmetricTree\Models\Node;
 
 class SymmetricTreeFinder
 {
+    private SymmetricTreeMirror $mirror;
+
     public function __construct()
     {
-        $this->minor = new SymmetricTreeMinor();
+        $this->mirror = new SymmetricTreeMirror();
     }
 
     public function search(Node $tree):bool
@@ -20,8 +22,8 @@ class SymmetricTreeFinder
         if (empty($tree->getLeft()) xor empty($tree->getRight())){
             return false;
         }
-        $minored_right = $this->minor->transfer($tree->getRight());
+        $mirrored_right = $this->mirror->transfer($tree->getRight());
 
-        return $tree->getLeft()->isEqual($minored_right);
+        return $tree->getLeft()->isEqual($mirrored_right);
     }
 }

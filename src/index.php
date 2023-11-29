@@ -3,8 +3,8 @@
 //composer autoload
 require_once './vendor/autoload.php';
 
-$simmetric_tree_command = new \App\Console\Commands\SymmetricTreeCommand();
+$number_of_bits = new \App\Console\Commands\NumberOfOneBitsCommand();
 
-$simmetric_tree_command->execute();
+$number_of_bits->execute();
 
 die();

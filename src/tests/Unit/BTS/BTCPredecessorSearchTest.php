@@ -4,31 +4,30 @@ declare(strict_types=1);
 namespace Tests\Unit\BTS;
 
 use App\BTS\BTSPredessorSearch;
-use App\BTS\BTSSuccessorSearch;
 use App\SymmetricTree\Models\Node;
 use PHPUnit\Framework\TestCase;
 
-class BTCSuccessorSearchTest extends TestCase
+class BTCPredecessorSearchTest extends TestCase
 {
     /**
      * @test
      */
-    public function findInOrderSuccessor_whenNodeNotFound_expectNull(){
-        $btc_finder = new BTSSuccessorSearch();
+    public function findInOrderPredecessor_whenNodeNotFound_expectNull(){
+        $btc_finder = new BTSPredessorSearch();
         $tree = new Node(10);
         $leaf = new Node(15);
         $tree->setRightNode($leaf);
-        $found_successor = $btc_finder->findInOrderSuccessor($tree, 20);
+        $found_successor = $btc_finder->findInOrderPredecessor($tree, 20);
         $this->assertNull($found_successor);
     }
 
     /**
      * @test
      */
-    public function findInOrderSuccessor_whenNodeFound_expectPredecessor(){
+    public function findInOrderPredecessor_whenNodeFound_expectPredecessor(){
 
 
-        $btc_finder = new BTSSuccessorSearch();
+        $btc_finder = new BTSPredessorSearch();
         $root = 5;
         $tree = new Node($root);
 
@@ -37,7 +36,7 @@ class BTCSuccessorSearchTest extends TestCase
         $sub_root = new Node(15);
         $tree->setRightNode($sub_root);
         $sub_root->setLeftNode($leaf);
-        $found_successor = $btc_finder->findInOrderSuccessor($tree, $key);
-        $this->assertSame(15, $found_successor);
+        $found_successor = $btc_finder->findInOrderPredecessor($tree, $key);
+        $this->assertSame($root, $found_successor);
     }
 }

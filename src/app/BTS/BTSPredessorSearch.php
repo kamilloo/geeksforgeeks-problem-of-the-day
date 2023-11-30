@@ -5,16 +5,16 @@ namespace App\BTS;
 
 use App\SymmetricTree\Models\Node;
 
-class BTSSuccessorSearch
+class BTSPredessorSearch
 {
     private bool $found = false;
     private int $key;
-    private ?int $traversal = null;
+    private bool $traversal = false;
 
     private array $in_order = [];
 
 
-    public function findInOrderSuccessor(Node $tree, int $key):?int{
+    public function findInOrderPredecessor(Node $tree, int $key):?int{
 
         $this->key = $key;
 
@@ -23,7 +23,7 @@ class BTSSuccessorSearch
         if ($this->found){
             $this->inOrderTraversal($tree);
         }
-        return isset($this->in_order[$this->traversal])  ? $this->in_order[$this->traversal]: null ;
+        return count($this->in_order) ? $this->in_order[count($this->in_order) - 1]: null ;
 
     }
 
@@ -53,15 +53,15 @@ class BTSSuccessorSearch
             $this->inOrderTraversal($tree->getLeft());
         }
 
-        $this->in_order[] = $tree->getRoot();
         if ($tree->getRoot() == $this->key){
-            $this->traversal = count($this->in_order);
+            $this->traversal = true;
         }
 
-//        if($this->traversal !== null && count($this->in_order) > $this->traversal){
-//            return;
-//        };
+        if($this->traversal){
+            return;
+        };
 
+        $this->in_order[] = $tree->getRoot();
 
         if ($tree->getRight()){
             $this->inOrderTraversal($tree->getRight());

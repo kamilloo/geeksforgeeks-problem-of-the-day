@@ -30,7 +30,7 @@ class SmallestSubstringOfAllCharactersTest extends TestCase
     public function getShortestUniqueSubstring_whenSubstringExist_getSubstring():void{
 
         //GIVEN
-        $implote = "abcdefghi";
+        $implote = "abcdef";
         $characters = [];
         for ($i=0;$i<strlen($implote);$i++){
             $characters[] = $implote[$i];
@@ -41,7 +41,7 @@ class SmallestSubstringOfAllCharactersTest extends TestCase
 
         $substring = $finder->run($characters, $full_string);
 
-        $this->assertSame("abcdefghi", $substring);
+        $this->assertSame("abcdef", $substring);
 
     }
 
